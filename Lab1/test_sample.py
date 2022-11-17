@@ -9,7 +9,7 @@ from bufferFile import BufferFile
 class TestDirectory:
     fatherDirectory = Directory('fatherDir')
 
-    def test_directoryCreation():
+    def test_directoryCreation(self):
         #arrange
         maxElements = 10
         name = 'name1'
@@ -22,7 +22,7 @@ class TestDirectory:
         assert directory.elementsCount == 0
         assert pytest.raises(OverflowError)
 
-        assert type(directory.listElements()) is list
+        assert type(directory.listElements()) is str
 
     def test_directoryMove(self):
         #arrange
@@ -56,10 +56,10 @@ class TestBinary:
 
         #act
         #assert
-        assert binary.name == name
+        assert binary.fileName == name
         assert binary.content == content
         assert binary.read() == content
-        assert binary.fatherDirectory == self.fatherDirectory
+        assert binary.father == self.fatherDirectory
 
     def test_binaryMove(self):
         #arrange
@@ -95,10 +95,10 @@ class TestBuffer:
 
         #act
         #assert
-        assert buffer.name == name
+        assert buffer.fileName == name
         assert buffer.MAX_BUF_FILE_SIZE == size
         assert pytest.raises(OverflowError)
-        assert buffer.fatherDirectory == self.fatherDirectory
+        assert buffer.father == self.fatherDirectory
 
     def test_bufferMove(self):
         #arrange
@@ -151,9 +151,9 @@ class TestLog:
 
         #act
         #assert
-        assert log.name == name
+        assert log.fileName == name
         assert pytest.raises(OverflowError)
-        assert log.fatherDirectory == self.fatherDirectory
+        assert log.father == self.fatherDirectory
 
     def test_logMove(self):
         #arrange
@@ -190,4 +190,4 @@ class TestLog:
 
 
         #assert
-        assert log.read() == line1 + '\n' + line2
+        assert log.read() == line1 + '\n' + line2 + '\n'
