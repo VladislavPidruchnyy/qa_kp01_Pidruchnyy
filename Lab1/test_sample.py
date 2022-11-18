@@ -1,13 +1,14 @@
 import pytest
-from array import array
 from directory import Directory
 from binaryFile import BinaryFile
 from logTextFile import LogTextFile
 from bufferFile import BufferFile
+from types import NoneType
+
 
 
 class TestDirectory:
-    fatherDirectory = Directory('fatherDir')
+    fatherDirectory = Directory('fatherDir', 10)
 
     def test_directoryCreation(self):
         #arrange
@@ -20,14 +21,13 @@ class TestDirectory:
         assert directory.name == name
         assert directory.DIR_MAX_ELEMS == maxElements
         assert directory.elementsCount == 0
-        assert pytest.raises(OverflowError)
-
+        assert type(directory.father) is NoneType
         assert type(directory.listElements()) is str
 
     def test_directoryMove(self):
         #arrange
         directory = Directory('dir')
-        assert pytest.raises(OverflowError)
+        assert type(directory.father) is NoneType
 
         #act
         directory.move(self.fatherDirectory)
@@ -46,7 +46,7 @@ class TestDirectory:
         assert 'directory' not in locals()
 
 class TestBinary:
-    fatherDirectory = Directory('fatherDir')
+    fatherDirectory = Directory('fatherDir',10)
 
     def test_binaryCreation(self):
         #arrange
@@ -66,7 +66,7 @@ class TestBinary:
         name = 'name1'
         content = 'some file content blah blah blah'
         binary = BinaryFile(name, content)
-        assert pytest.raises(OverflowError)
+        assert type(binary.father) is NoneType
 
         #act
         binary.move(self.fatherDirectory)
@@ -85,7 +85,7 @@ class TestBinary:
         assert 'binary' not in locals()
 
 class TestBuffer:
-    fatherDirectory = Directory('fatherDir')
+    fatherDirectory = Directory('fatherDir',10)
 
     def test_bufferCreation(self):
         #arrange
@@ -105,7 +105,7 @@ class TestBuffer:
         name = 'name1'
         content = 'some file content blah blah blah'
         buffer = BufferFile(name, content)
-        assert pytest.raises(OverflowError)
+        assert type(buffer.father) is NoneType
 
         #act
         buffer.move(self.fatherDirectory)
@@ -142,7 +142,7 @@ class TestBuffer:
         assert pytest.raises(OverflowError)
 
 class TestLog:
-    fatherDirectory = Directory('fatherDir')
+    fatherDirectory = Directory('fatherDir',10)
 
     def test_logCreation(self):
         #arrange
@@ -152,14 +152,14 @@ class TestLog:
         #act
         #assert
         assert log.fileName == name
-        assert pytest.raises(OverflowError)
+        assert log.read() ==''
         assert log.father == self.fatherDirectory
 
     def test_logMove(self):
         #arrange
         name = 'name1'
         log = LogTextFile(name)
-        assert pytest.raises(OverflowError)
+        assert type(log.father) is NoneType
 
         #act
         log.move(self.fatherDirectory)
