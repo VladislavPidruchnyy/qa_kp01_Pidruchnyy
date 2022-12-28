@@ -3,7 +3,6 @@ class BinaryFile:
         self.fileName = fileName
         self.content = content
         self.father = father
-        self.info = content
         self.deleted = False
 
     def __delete__(self):
@@ -12,7 +11,7 @@ class BinaryFile:
             return {'message': self.fileName +'file deleted'}
         else: 
             return {'error': 'File is already deleted'}
-
+            
     def __move__(self, path):
         if (path.elementsCount >= path.DIR_MAX_ELEMS + 1):
             return {'error': 'Target directory is full'}
