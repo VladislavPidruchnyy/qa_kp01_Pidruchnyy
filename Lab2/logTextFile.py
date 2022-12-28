@@ -3,7 +3,7 @@ class LogTextFile:
         self.fileName = fileName
         self.father = father
         self.content = ''
-        self.deleted = False
+        self.deleted = False 
 
     def __delete__(self):
         if self.deleted is False:

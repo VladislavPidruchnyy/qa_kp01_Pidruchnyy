@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 from directory import Directory
 from binaryFile import BinaryFile
 from logTextFile import LogTextFile
-from bufferFile import BufferFile
+from bufferFile import BufferFile 
 
 app = Flask(__name__)
 api = Api(app)
