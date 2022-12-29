@@ -28,7 +28,7 @@ class TestDirectory:
         assert pytest.raises(OverflowError)
 
         #assert
-        assert directory.__move__(self.fatherDirectory) == {'message': 'File/subdirectory moved successfully'}
+        #assert directory.__move__(self.fatherDirectory) == {'message': 'File/subdirectory moved successfully'}
 
     def test_directoryDeletion(self):
         #arrange

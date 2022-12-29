@@ -102,4 +102,4 @@ api.add_resource(DirectoryApi, '/directory')
 api.add_resource(logTextApi, '/logtextfile')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
