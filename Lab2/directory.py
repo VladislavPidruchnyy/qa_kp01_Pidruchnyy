@@ -5,7 +5,7 @@ class Directory:
         self.name = dirName
         self.elementsCount = 0
         self.fileList = []
-        self.deleted = False
+        self.deleted = False 
 
     def __delete__(self):
         if self.deleted is False:
